@@ -22,8 +22,24 @@ function generatePassword() {
         window.alert("You have to select at least one of the character types!")
       }
     }
+    if (specialCharacters) {
+      selectedArray = selectedArray.concat(specialSet);
+    }
+    if (numericalCharacters) {
+      selectedArray = selectedArray.concat(numSet);
+    }
+    if (lowerCase) {
+      selectedArray = selectedArray.concat(lowerCaseSet);
+    }
+    if (upperCase) {
+      selectedArray = selectedArray.concat(upperCaseSet);
+    }
 
-    
+    var passwordString = "";
+    for(var i = 0; i < passwordLength; i++) {
+      passwordString += selectedArray[Math.floor(Math.random()=(selectedArray.length))] ;
+    }
+    return passwordString;
 }
 
 // Get references to the #generate element
