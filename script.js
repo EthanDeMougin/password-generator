@@ -9,6 +9,7 @@ function generatePassword() {
   var passwordLength = getPasswordLength();
 
   var charTypeSelected = false;
+  
     while (charTypeSelected == false) {
       var specialCharacters = getChoice("specialCharacters");
       var numericalCharacters = getChoice("numericalCharacters");
@@ -22,24 +23,63 @@ function generatePassword() {
         window.alert("You have to select at least one of the character types!")
       }
     }
+
     if (specialCharacters) {
       selectedArray = selectedArray.concat(specialSet);
     }
+
     if (numericalCharacters) {
       selectedArray = selectedArray.concat(numSet);
     }
+
     if (lowerCase) {
       selectedArray = selectedArray.concat(lowerCaseSet);
     }
+
     if (upperCase) {
       selectedArray = selectedArray.concat(upperCaseSet);
     }
 
     var passwordString = "";
+
     for(var i = 0; i < passwordLength; i++) {
       passwordString += selectedArray[Math.floor(Math.random()=(selectedArray.length))] ;
     }
     return passwordString;
+}
+
+function getchoice(currentOption) {
+  var userChoice = "a",
+    messagePrompt = "";
+
+  var messagePrompt = ('Would you prefer '.concat(currentOption));
+    messagePrompt = messagePrompt.concat(' Characters (yes/no)?');
+    
+    while (userChoice = "a") {
+      userChoice = (window.prompt(messagePrompt));
+      userChoice = userChoice.toLowerCase();
+    
+    if (userChoice == "y") {
+      return true;
+    } else if (userChoice == "n") {
+      return false;
+    }
+
+  }
+
+}
+
+function getPasswordLength() {
+  var userChoice = 0;
+
+  while ((userChoice < 8) || (userChoice > 128)) {
+    userChoice = parseInt(window.prompt("Enter the number of characters you want for your password between the numbers 8 and 128: " ));
+
+    if (isNaN(userChoice)) {
+      userChoice = 0;
+    }
+  }
+  return userChoice;
 }
 
 // Get references to the #generate element
