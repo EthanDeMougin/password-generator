@@ -1,9 +1,9 @@
 tweaked // Assignment code here
 function generatePassword() {
-  var specialCharacters = ['@', '%',  '+', '/', "'", '!', '#', '$', '^', '?', ':', ',' ,')' ,'(' ,'}' ,'{' ,']' ,'[' ,'~' ,'-' ,'_' ,'.'];
-  var numericalCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-  var upperCaseCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-  var lowerCaseCharacters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+  var specialSet = ['@', '%',  '+', '/', "'", '!', '#', '$', '^', '?', ':', ',' ,')' ,'(' ,'}' ,'{' ,']' ,'[' ,'~' ,'-' ,'_' ,'.'];
+  var numSet = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  var upperCaseSet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  var lowerCaseSet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
   var selectedArray = [];
 
   var passwordLength = getPasswordLength();
@@ -11,10 +11,10 @@ function generatePassword() {
   var charTypeSelected = false;
   
   while (charTypeSelected == false) {
-    var specialCharacters = getChoice("specialCharacters");
-    var numericalCharacters = getChoice("numericalCharacters");
-    var upperCaseCharacters = getChoice("upperCaseCharacters");
-    var lowerCaseCharacters = getChoice("lowerCaseCharacters");
+    var specialCharacters = getChoice("special");
+    var numericCharacters = getChoice("numeric");
+    var upperCaseCharacters = getChoice("upperCase");
+    var lowerCaseCharacters = getChoice("lowerCase");
 
     if ( (specialCharacters) || (numericalCharacters) || (upperCaseCharacters) || (lowerCaseCharacters) ) {
       charTypeSelected = true;
@@ -43,9 +43,9 @@ function generatePassword() {
   var passwordString = "";
 
   for(var i = 0; i < passwordLength; i++) {
-    passwordString += selectedArray[Math.floor(Math.random()=(selectedArray.length))] ;
+    passwordString += selectedArray[Math.floor(Math.random()*(selectedArray.length))] ;
   }
-  
+
   return passwordString;
 }
 
@@ -54,7 +54,7 @@ function getchoice(currentOption) {
     messagePrompt = "";
 
   var messagePrompt = ('Would you prefer '.concat(currentOption));
-  messagePrompt = messagePrompt.concat(' Characters (yes/no)?');
+  messagePrompt = messagePrompt.concat(' characters (yes/no)?');
     
   while (userChoice = "a") {
     userChoice = (window.prompt(messagePrompt));
@@ -80,7 +80,6 @@ function getPasswordLength() {
       userChoice = 0;
     }
   }
-
   return userChoice;
 }
 
